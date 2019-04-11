@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Album } from "../album.model";
+import { ALBUMS } from "../albums.data";
 
 @Component({
   selector: "app-album-list",
@@ -11,70 +12,17 @@ export class AlbumListComponent implements OnInit {
   title: any;
   titleCounter = 0;
   numbers: number[];
+  lastAlbumClicked: Album;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.numbers = [1, 2, 3];
-    const interval = setInterval(
-      () => {
-        this.titleCounter++;
-        this.numbers.push(4);
-        console.log(this.numbers);
-        this.numbers = [...this.numbers];
-        this.albumsArray[0].price += 10;
-      },
-
-      2000
+    this.albumsArray = this.albumsArray = ALBUMS;
+  }
+  parentFunctionHandler(album) {
+    this.lastAlbumClicked = album;
+    alert(
+      "Album " + album.album_name + " was sent from the album card component"
     );
-    setTimeout(() => clearInterval(interval), 6000);
-
-    this.albumsArray = [
-      {
-        id: 1,
-        artist: "Tremonti",
-        album_name: "Dust",
-        on_sale: true,
-        price: 11.99,
-        currency: "USD",
-        year: 2016,
-        release_date: "April 29, 2016",
-        recording_location: "Studio Barbarosa, Orlando, FL",
-        genre: "Pop/Rock",
-        duration: "43:18:00",
-        url: "https://www.allmusic.com/album/dust-mw0002918360"
-      },
-      {
-        id: 2,
-        artist: "Bon Jovi",
-        album_name: "7800 Fahrerenheit",
-        on_sale: false,
-        price: 7,
-        year: 1985,
-        currency: "USD",
-        release_date: "April 20, 1985",
-        recording_location: "Warehouse, Philadelphia, PA",
-        genre: "Pop/Rock",
-        duration: "47:15:00",
-        url: "https://www.allmusic.com/album/7800%C2%B0-fahrenheit-mw0000189199"
-      },
-      {
-        id: 3,
-        artist: "The Beatles",
-        album_name: "The White Album",
-        on_sale: true,
-        currency: "GBP",
-        price: 24,
-        year: 1968,
-        release_date: "November 22, 1968",
-        recording_location: "",
-        genre: "Pop/Rock",
-        duration: "1:33:43",
-        url:
-          "https://www.allmusic.com/album/the-beatles-white-album-mw0000418113"
-      }
-    ];
-    this.title = `Billboard Hot ${this.albumsArray.length} `;
-    console.log(this.albumsArray.length);
   }
 }

@@ -8,6 +8,7 @@ import { Album } from "./albums/album.model";
 })
 export class AppComponent implements OnInit {
   title: any;
+
   ngOnInit(): void {
     this.title = `Billboard Hot `;
   }
