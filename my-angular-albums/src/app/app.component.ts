@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NavbarComponent } from "./navbar/navbar.component";
 import { Album } from "./albums/album.model";
 
 @Component({
